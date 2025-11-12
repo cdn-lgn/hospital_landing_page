@@ -168,7 +168,9 @@ const FeaturesSection = () => {
 function Hex({ className = "", children }) {
   return (
     <motion.div
-      whileHover={{ scale: 1.1 }}
+      {...(isMobile
+        ? { whileTap: { scale: 1.1 } }
+        : { whileHover: { scale: 1.1 } })}
       transition={{ type: "spring", stiffness: 300 }}
       initial={{ y: 60, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
