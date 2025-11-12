@@ -9,16 +9,15 @@ import {
   IndianRupee,
   Wallet,
 } from "lucide-react";
-import { RoundedHexagon } from "../components/Extra";
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
 
-  const width = useTransform(scrollYProgress, [0, 0.9], ["100%", "90%"]);
-  const y = useTransform(scrollYProgress, [0, 0.9], [0, -80]);
+  const width = useTransform(scrollYProgress, [0, 0.6], ["100%", "90%"]);
+  const y = useTransform(scrollYProgress, [0, 0.6], [0, -80]);
   const borderRadius = useTransform(
     scrollYProgress,
-    [0, 0.9],
+    [0, 0.6],
     ["0rem", "2rem"]
   );
 
@@ -140,7 +139,7 @@ const FeaturesSection = () => {
             </h6>
           </Hex>
           <Hex className="pos3 before:bg-gray-200" color="#7c3aed">
-            <img src="/src/assets/icon.png" className="p-7" />
+            <img src="/icon.png" className="p-7" />
           </Hex>
           <Hex className="pos4 before:bg-pink-600" color="#7c3aed">
             <Beaker className="w-5 h-5 sm:w-8 sm:h-8" />

@@ -34,7 +34,7 @@ const Header = () => {
       <div className="px-6 py-2 flex items-center justify-between">
         <div className="flex items-center gap-3 cursor-pointer">
           <img
-            src="/src/assets/icon.png"
+            src="/icon.png"
             alt="Velocare Logo"
             className="w-10 h-10 rounded-full object-cover"
           />
