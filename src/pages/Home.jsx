@@ -404,7 +404,9 @@ function ChooseWhichYouWant() {
               whileInView={{ y: 0 }}
               viewport={{ once: false, amount: 0.8 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              whileTap={
+    
+     whileTap={
+                ({ transition: { duration: 0.1 } },
                 isMobile
                   ? {
                       scale: 1.05,
@@ -412,7 +414,7 @@ function ChooseWhichYouWant() {
                       boxShadow:
                         "0 10px 15px -3px rgba(107, 114, 128, 0.3), 0 4px 6px -4px rgba(107, 114, 128, 0.2)",
                     }
-                  : {}
+                  : {})
               }
               key={i}
               className="h-40 w-40 md:h-40 md:w-40 lg:h-50 lg:w-50
