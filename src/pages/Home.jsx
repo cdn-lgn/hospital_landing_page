@@ -404,22 +404,12 @@ function ChooseWhichYouWant() {
               whileInView={{ y: 0 }}
               viewport={{ once: false, amount: 0.8 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-    
-     whileTap={
-                ({ transition: { duration: 0.1 } },
-                isMobile
-                  ? {
-                      scale: 1.05,
-                      backgroundColor: "#ffffff",
-                      boxShadow:
-                        "0 10px 15px -3px rgba(107, 114, 128, 0.3), 0 4px 6px -4px rgba(107, 114, 128, 0.2)",
-                    }
-                  : {})
-              }
               key={i}
               className="h-40 w-40 md:h-40 md:w-40 lg:h-50 lg:w-50
-               hover:bg-white dark:hover:bg-black transition-all duration-400 flex items-center justify-center flex-col cursor-pointer
-              hover:shadow-lg group"
+               active:bg-white  hover:bg-white
+               dark:active:bg-black
+               dark:hover:bg-black transition-all duration-400 flex items-center justify-center flex-col cursor-pointer
+              hover:shadow-lg active:shadow-lg group"
             >
               <Icon size={40} className="text-blue-500" />
               <h1 className="text-xl my-4 group-hover:text-blue-500">
