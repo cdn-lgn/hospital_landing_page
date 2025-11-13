@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import {
   motion,
   AnimatePresence,
@@ -9,28 +9,44 @@ import {
 
 const navItems = [
   { label: "Home", href: "#home" },
-  { label: "Features", href: "#features" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "About", href: "#about" },
+  { label: "Modules", href: "#modules" },
   { label: "Contact", href: "#contact" },
 ];
 
 const Header = () => {
-  const { scrollYProgress } = useScroll();
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("Home");
   const [hovered, setHovered] = useState(null);
-  const borderRadius = useTransform(
-    scrollYProgress,
-    [0, 0.4],
-    ["0rem", "2rem"]
-  );
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("velocare-theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    const shouldBeDark = saved === "dark" || (!saved && prefersDark);
+
+    setIsDark(shouldBeDark);
+    if (shouldBeDark) document.documentElement.classList.add("dark");
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDark((prev) => {
+      const newDark = !prev;
+      if (newDark) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("velocare-theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("velocare-theme", "light");
+      }
+      return newDark;
+    });
+  };
 
   return (
-    <motion.header
-      className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl backdrop-blur-lg shadow-lg z-50 overflow-hidden"
-      style={{ borderRadius }}
-      transition={{ duration: 0.6 }}
-    >
+    <motion.header className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl backdrop-blur-lg shadow-lg z-50 overflow-hidden bg-white/70 dark:bg-gray-900/70 border border-white/30 dark:border-gray-800/40 rounded-4xl">
       <div className="px-6 py-2 flex items-center justify-between">
         <div className="flex items-center gap-3 cursor-pointer">
           <img
@@ -47,7 +63,6 @@ const Header = () => {
           {navItems.map((item) => {
             const isActive = active === item.label;
             const isHovered = hovered === item.label;
-
             return (
               <button
                 key={item.label}
@@ -59,14 +74,15 @@ const Header = () => {
                 {(isHovered || isActive) && (
                   <motion.span
                     layoutId="desktopPill"
-                    className="absolute inset-0 rounded-lg bg-white"
+                    className="absolute inset-0 rounded-lg bg-white dark:bg-gray-800"
                     transition={{ duration: 0.3, ease: "easeOut" }}
                   />
                 )}
-
                 <span
                   className={`relative z-10 transition-colors duration-200 ${
-                    isHovered || isActive ? "text-blue-500" : "text-black/80"
+                    isHovered || isActive
+                      ? "text-blue-500"
+                      : "text-black/80 dark:text-white/80"
                   }`}
                 >
                   {item.label}
@@ -76,16 +92,40 @@ const Header = () => {
           })}
         </nav>
 
-        <button className="hidden md:block px-4 py-2 rounded-xl bg-blue-500 text-white font-medium hover:bg-blue-600 transition-all cursor-pointer">
-          Demo
-        </button>
+        <div className="hidden md:flex items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800
+                       text-gray-700 dark:text-gray-300
+                       hover:bg-gray-200 dark:hover:bg-gray-700
+                       transition-colors"
+            aria-label="Toggle dark mode"
+          >
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+          <button className="px-5 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors font-medium">
+            Demo
+          </button>
+        </div>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-white cursor-pointer"
-        >
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
+        <div className="flex md:hidden items-center gap-3">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800
+                       text-gray-700 dark:text-gray-300
+                       hover:bg-gray-200 dark:hover:bg-gray-700
+                       transition-colors"
+            aria-label="Toggle dark mode"
+          >
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-black dark:text-white cursor-pointer"
+          >
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -96,13 +136,12 @@ const Header = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden backdrop-blur-md rounded-b-2xl overflow-hidden"
+            className="md:hidden rounded-b-2xl overflow-hidden"
           >
             <nav className="flex flex-col items-center py-4">
               {navItems.map((item) => {
                 const isActive = active === item.label;
                 const isHovered = hovered === item.label;
-
                 return (
                   <button
                     key={item.label}
@@ -117,16 +156,15 @@ const Header = () => {
                     {(isHovered || isActive) && (
                       <motion.span
                         layoutId="mobilePill"
-                        className="absolute inset-0 rounded-lg bg-white"
+                        className="absolute inset-0 rounded-lg bg-white dark:bg-gray-800"
                         transition={{ duration: 0.3, ease: "easeOut" }}
                       />
                     )}
-
                     <span
                       className={`relative z-10 transition-colors duration-200 ${
                         isHovered || isActive
                           ? "text-blue-500"
-                          : "text-black/80"
+                          : "text-black/80 dark:text-white/80"
                       }`}
                     >
                       {item.label}
@@ -134,8 +172,7 @@ const Header = () => {
                   </button>
                 );
               })}
-
-              <button className="mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white font-medium hover:bg-blue-600 transition-all cursor-pointer">
+              <button className="mt-4 px-4 py-2 rounded-xl bg-blue-500 text-white font-medium hover:bg-blue-600 dark:hover:bg-blue-400 transition-all cursor-pointer">
                 Demo
               </button>
             </nav>

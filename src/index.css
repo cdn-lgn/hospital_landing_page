@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 html {
   scroll-behavior: smooth;
@@ -9,7 +10,7 @@ html {
 
 body {
   font-family: "Nunito", "Ubuntu Mono", sans-serif;
-  background-color: #eff6ff;
+  @apply bg-blue-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
 }
 
 *::-webkit-scrollbar {
