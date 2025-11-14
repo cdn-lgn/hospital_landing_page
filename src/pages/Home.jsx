@@ -53,7 +53,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center overflow-hidden">
+    <div className="flex flex-col items-center justify-center">
       <motion.section
         id="home"
         ref={heroRef}
@@ -323,7 +323,7 @@ function Improve() {
   return (
     <section
       ref={ref}
-      className="relative flex flex-col md:flex-row w-full min-h-screen"
+      className="relative flex flex-col md:flex-row w-full min-h-screen "
     >
       <div className="md:w-1/2 p-10">
         <div className="md:sticky md:top-24">
@@ -571,7 +571,7 @@ function ContactSection() {
   return (
     <section
       id="contact"
-      className="w-full min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-gray-900 dark:text-gray-100 transition-colors duration-300"
+      className="w-full min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 sm:py-20 text-gray-900 dark:text-gray-100 transition-colors duration-300 overflow-hidden"
     >
       <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-14">
         <motion.div
