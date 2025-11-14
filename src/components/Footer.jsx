@@ -12,7 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { isMobile } from "../utility/helper";
 
-const Footer = ({ setShowModal }) => {
+const Footer = () => {
   const navigate = useNavigate();
 
   const navItems = [
@@ -23,7 +23,6 @@ const Footer = ({ setShowModal }) => {
   ];
 
   const handleNavClick = (id) => {
-    if (id === "contact") return setShowModal(true);
     if (window.location.pathname !== "/") {
       navigate("/", { replace: false });
       setTimeout(() => {
@@ -67,7 +66,7 @@ const Footer = ({ setShowModal }) => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: false, amount: 0.05 }}
         className="max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12"
       >
         <div>
@@ -135,7 +134,7 @@ const Footer = ({ setShowModal }) => {
               viewport={{ once: false }}
               className="flex items-center gap-3"
             >
-              <Phone className="text-blue-500" size={18} /> +91 98765 43210
+              <Phone className="text-blue-500" size={18} /> +91 00000 00000
             </motion.li>
             <motion.li
               initial={{ opacity: 0, x: -20 }}
@@ -166,7 +165,7 @@ const Footer = ({ setShowModal }) => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: false }}
-                className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-gray-700 transition"
+                className="p-2 rounded-full bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400  transition ring-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.55)] border-blue-500"
               >
                 {s.icon}
               </motion.a>

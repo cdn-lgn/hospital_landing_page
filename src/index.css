@@ -3,6 +3,16 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  --line-start: white;
+  --line-end: #3b82f6;
+}
+
+.dark {
+  --line-start: black;
+  --line-end: #3b82f6;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
