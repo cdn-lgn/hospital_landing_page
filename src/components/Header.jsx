@@ -122,7 +122,12 @@ const Header = () => {
           </button>
           <button
             className="px-5 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors font-medium cursor-pointer"
-            onClick={() => window.open("https://wa.me/+910000000000", "_blank")}
+            onClick={() =>
+              window.open(
+                "https://wa.me/919753627301?text=Hello%2C%20I%20received%20this%20number%20from%20Velocare%20%28Hospital%20ERP%20System%29.%20I%20would%20like%20to%20know%20more%20details.",
+                "_blank"
+              )
+            }
           >
             Demo
           </button>

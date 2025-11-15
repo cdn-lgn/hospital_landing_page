@@ -112,7 +112,10 @@ const Home = () => {
                      hover:bg-[#1e7ed6] dark:hover:bg-blue-500
                      transition-all duration-300 cursor-pointer"
               onClick={() =>
-                window.open("https://wa.me/+910000000000", "_blank")
+                window.open(
+                  "https://wa.me/919753627301?text=Hello%2C%20I%20received%20this%20number%20from%20Velocare%20%28Hospital%20ERP%20System%29.%20I%20would%20like%20to%20know%20more%20details.",
+                  "_blank"
+                )
               }
             >
               Request Demo
