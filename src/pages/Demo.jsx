@@ -129,7 +129,7 @@ const Demo = () => {
             <svg
               className="w-full h-full"
               viewBox="0 0 600 60"
-              preserveAspectRatio="none"
+              preserveAspectRatio="xMidYMid meet"
             >
               <motion.path
                 d="M0,30 Q50,10 100,30 T200,30 T300,30 T400,30 T500,30 T600,30"
@@ -150,19 +150,15 @@ const Demo = () => {
               />
               {steps.map((_, i) => (
                 <motion.circle
-                  key={i}
                   cx={100 + i * 200}
                   cy={30}
                   r={12}
                   fill={currentStep > i ? "#3b82f6" : "#9ca3af"}
-                  className={
-                    currentStep > i
-                      ? "text-blue-500"
-                      : "text-gray-400 dark:text-gray-500"
-                  }
+                  transformBox="fill-box"
+                  transformOrigin="center"
                   initial={{ scale: 0 }}
-                  animate={{ scale: currentStep > i ? 1.4 : 1 }}
-                  transition={{ duration: 0.5 }}
+                  animate={{ scale: currentStep > i ? 1.3 : 1 }}
+                  transition={{ duration: 0.4 }}
                 />
               ))}
             </svg>
