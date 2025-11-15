@@ -5,6 +5,8 @@ import ReactLenis from "lenis/react";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Modules from "./pages/Modules";
+import FeaturesSection  from "./pages/Orbit";
+import HospitalDemo from "./pages/Demo";
 
 const App = () => {
   return (
@@ -13,6 +15,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/demo" element={<HospitalDemo />} />
           <Route path="/modules/:moduleName" element={<Modules />} />
         </Routes>
         <Footer />
